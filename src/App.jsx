@@ -1,6 +1,9 @@
 
 import { useState } from 'react'
 import './App.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 function App() {
@@ -18,7 +21,7 @@ function App() {
       stateStatus(bmiValue)
     }
     else{
-      alert('Please enter valid height and weight')
+      toast.warning('Please enter valid height and weight')
     }
   }
   const stateStatus = (bmiValue)=>{
@@ -45,44 +48,40 @@ function App() {
 
   return (
     <>
-    <div className='bg-info' style={{height:'100vh',width:'100%'}}>
-      <div className="container">
-        <div className="row">
-          <div className="col-md-4"></div>
-          <div className="col-md-4">
-            <form className='shadow p-4 my-5 bg-light'>
-              <h3 className='text-center mb-4 text-success'>BMI CALCULATOR</h3>
-
-              <div className="mb-3">
-                <label>Height (cm)</label>
-                <input type="text" value={height} placeholder='Enter your height' className='form-control mt-2' onChange={(e)=>setheight(e.target.value)}/>
-              </div>
-
-              <div className="mb-3">
-                <label>Weight (kg)</label>
-                <input type="text" value={weight} placeholder='Enter your weight' className='form-control mt-2' onChange={(e)=>setweight(e.target.value)}/>
-              </div>
-
-              <div className='mb-3 d-flex justify-content-evenly'>
-                <button className='btn btn-success' onClick={calculateBmi}>Submit</button>
-                
-                <button className='btn btn-warning' onClick={handlecancel}>Reload</button>
-              </div>
-            </form>
-
+    <div className=" d-flex align-items-center justify-content-center"  style={{ backgroundImage:'url(https://wallpaperaccess.com/full/6511765.jpg)', height:'100vh',width:'100%'}}>
+          <div className='shadow p-4 bg-light' style={{width:'500px'}}>
+            <form>
+                  <h3 className='text-center mb-4 text-success'>BMI CALCULATOR</h3>
+    
+                  <div className="mb-3">
+                    <label>Height (cm)</label>
+                    <input type="text" value={height} placeholder='Enter your height' className='form-control mt-2' onChange={(e)=>setheight(e.target.value)}/>
+                  </div>
+    
+                  <div className="mb-3">
+                    <label>Weight (kg)</label>
+                    <input type="text" value={weight} placeholder='Enter your weight' className='form-control mt-2' onChange={(e)=>setweight(e.target.value)}/>
+                  </div>
+                  
+                </form>
+  
+                <div className='mb-3 d-flex justify-content-evenly'>
+                    <button className='btn btn-success' onClick={calculateBmi}>Submit</button>
+                    
+                    <button className='btn btn-warning' onClick={handlecancel}>Reload</button>
+                  </div>
+          </div>
+          
             {bmi && (
-              <div style={{marginTop:"25px"}}>
+              <div className='p-4' style={{marginTop:"25px"}}>
               <h4 className='text-center'>Your BMI : {bmi}</h4>
               <h5 className='text-center'>{statuss}</h5>
             </div>
           )}
 
-          </div>
-          <div className="col-md-4"></div>
-        </div>
-      </div>
+         
     </div>
-
+    <ToastContainer position='top-center' theme="colored" autoClose={2000} />
     </>
   )
 }
